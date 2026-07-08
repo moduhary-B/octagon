@@ -1,0 +1,60 @@
+# Виртуальное окружение
+venv/
+env/
+.env/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Логи и базы данных
+*.log
+*.sqlite3
+*.db
+
+# Файлы IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Файлы окружения
+.env
+.env.local
+.env.*.local
+
+# Файлы отчётов и покрытия
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Файлы миграций (если используете Django или Alembic)
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# Секретные ключи
+config.py
+secrets.py
+*.key
+*.pem
+
+# Файлы, создаваемые системой
+Thumbs.db
+*.tmp
