@@ -3,6 +3,7 @@ import os
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from app.db.db import init_db
 from app.db.crud import create_category, create_book, get_all_categories, get_category_by_title
 
 def init_data():
@@ -50,6 +51,8 @@ def init_data():
         print(f"Добавлена книга: {book_data['title']}")
 
 if __name__ == "__main__":
+    print("Создание таблиц...")
+    init_db()
     print("Начинаем заполнение базы данных...")
     init_data()
     print("База данных успешно заполнена!")

@@ -1,60 +1,25 @@
-class Category:
-    """Модель категории"""
-    def __init__(self, id=None, title=None):
-        self.id = id
-        self.title = title
-    
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'title': self.title
-        }
-    
-    @staticmethod
-    def from_dict(data):
-        return Category(
-            id=data.get('id'),
-            title=data.get('title')
-        )
+from sqlalchemy import Column, Integer, String, Text, Numeric, ForeignKey
+from sqlalchemy.orm import relationship
+from app.db.db import Base
 
-class Book:
-    """Модель книги"""
-    def __init__(self, id=None, title=None, description=None, 
-                 price=None, url=None, category_id=None, category=None):
-        self.id = id
-        self.title = title
-        self.description = description
-        self.price = price
-        self.url = url
-        self.category_id = category_id
-        self.category = category
-    
-    def to_dict(self):
-        result = {
-            'id': self.id,
-            'title': self.title,
-            'description': self.description,
-            'price': float(self.price) if self.price else None,
-            'url': self.url,
-            'category_id': self.category_id
-        }
-        if self.category:
-            result['category'] = self.category.to_dict() if isinstance(self.category, Category) else self.category
-        return result
-    
-    @staticmethod
-    def from_dict(data):
-        book = Book(
-            id=data.get('id'),
-            title=data.get('title'),
-            description=data.get('description'),
-            price=data.get('price'),
-            url=data.get('url'),
-            category_id=data.get('category_id')
-        )
-        if 'category' in data and data['category']:
-            if isinstance(data['category'], dict):
-                book.category = Category.from_dict(data['category'])
-            else:
-                book.category = data['category']
-        return book
+
+class Category(Base):
+    __tablename__ = "categories"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String(255), nullable=False, unique=True)
+
+    books = relationship("Book", back_populates="category")
+
+
+class Book(Base):
+    __tablename__ = "books"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String(255), nullable=False)
+    description = Column(Text, nullable=True)
+    price = Column(Numeric(10, 2), nullable=True)
+    url = Column(String(500), nullable=True)
+    category_id = Column(Integer, ForeignKey("categories.id"), nullable=True)
+
+    category = relationship("Category", back_populates="books")
