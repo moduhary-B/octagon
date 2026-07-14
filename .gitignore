@@ -1,0 +1,53 @@
+# Виртуальные окружения
+venv/
+env/
+.venv/
+
+# Переменные окружения и локальные настройки
+.env
+.env.local
+.env.*.local
+
+# Кэш и служебные файлы Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+__pypackages__/
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Кэш тестов, линтеров и отчёты покрытия
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Логи и локальные базы данных
+*.log
+*.sqlite
+*.sqlite3
+*.db
+
+# Настройки редакторов и операционной системы
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Ключи и сертификаты
+*.key
+*.pem
+
+# Временные файлы
+*.tmp
+*.temp
